@@ -1,11 +1,51 @@
-@import 'tailwindcss';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
-@source '../**/*.blade.php';
-@source '../**/*.js';
+@layer components {
+    /* Bounce Slow: Memberikan efek mengambang yang organik */
+    .animate-bounce-slow {
+        animation: bounce-slow 4s ease-in-out infinite;
+        will-change: transform;
+    }
 
-@theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+    /* Marquee: Animasi horizontal yang seamless */
+    .animate-marquee {
+        animation: marquee 30s linear infinite;
+        display: flex;
+        width: max-content;
+        backface-visibility: hidden; /* Mencegah font bergetar saat animasi */
+    }
+
+    .animate-marquee:hover {
+        animation-play-state: paused;
+    }
+
+    /* Utilitas Tambahan untuk Kesan Premium */
+    .glass-card {
+        @apply bg-white/80 backdrop-blur-xl border border-white/40 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)];
+    }
+}
+
+@keyframes bounce-slow {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+details > summary::-webkit-details-marker {
+    display: none;
 }
