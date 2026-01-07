@@ -27,7 +27,8 @@
                 </div>
 
                 <div class="hidden md:flex items-center space-x-10 text-[13px] font-bold uppercase tracking-widest">
-                    <a href="#katalog" class="text-slate-500 hover:text-emerald-600 transition-colors relative group">
+                    <a href="{{ route('products.index') }}"
+                        class="text-slate-500 hover:text-emerald-600 transition-colors relative group">
                         Katalog
                         <span
                             class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-500 group-hover:w-full transition-all duration-300"></span>
@@ -104,7 +105,7 @@
                 <div class="mt-10 flex flex-col sm:flex-row gap-4">
                     <button
                         class="group relative bg-slate-900 text-white px-10 py-5 rounded-2xl font-bold text-lg shadow-2xl hover:bg-emerald-600 transition-all duration-300 overflow-hidden">
-                        <span class="relative z-10">Eksplor Katalog</span>
+                        <a href="{{ route('products.index') }}" class="relative z-10">Eksplor Katalog</a>
                         <div
                             class="absolute inset-0 bg-gradient-to-r from-emerald-600 to-teal-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         </div>
@@ -250,7 +251,7 @@
                 <h2 class="text-4xl font-extrabold text-slate-900 tracking-tight">Katalog Unggulan</h2>
                 <p class="text-slate-500 text-lg">Kurasi bahan baku segar dengan standar QC ketat setiap pagi.</p>
             </div>
-            <a href="#"
+            <a href="{{ route('products.index') }}"
                 class="group flex items-center gap-3 bg-white border border-slate-200 px-6 py-3 rounded-full font-bold text-slate-700 hover:bg-slate-900 hover:text-white transition-all duration-300 shadow-sm">
                 Lihat Semua Produk
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 group-hover:translate-x-1 transition-transform"
@@ -262,65 +263,82 @@
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+            @foreach ($products->take(4) as $product)
+                {{-- Kita ambil 4 produk teratas untuk Landing Page --}}
+                <div
+                    class="group relative bg-white rounded-[32px] p-4 border border-slate-100 transition-all duration-500 hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] hover:-translate-y-2">
 
-            <div
-                class="group relative bg-white rounded-[32px] p-4 border border-slate-100 transition-all duration-500 hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] hover:-translate-y-2">
-                <div class="absolute top-6 left-6 z-10">
-                    <span
-                        class="bg-white/90 backdrop-blur-md text-emerald-700 text-[10px] font-bold px-3 py-1.5 rounded-full shadow-sm border border-emerald-100">
-                        BARU PANEN
-                    </span>
-                </div>
-
-                <div class="aspect-[4/5] bg-slate-50 rounded-[24px] overflow-hidden mb-6 relative">
-                    <img src="https://images.unsplash.com/photo-1518977676601-b53f02bad67b?q=80&w=500"
-                        class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
-                        alt="Kentang Dieng Super">
-                    <div
-                        class="absolute inset-0 bg-slate-900/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                        <button
-                            class="bg-white text-slate-900 p-4 rounded-2xl shadow-xl transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                            </svg>
-                        </button>
+                    <div class="absolute top-6 left-6 z-10">
+                        <span
+                            class="bg-white/90 backdrop-blur-md text-emerald-700 text-[10px] font-bold px-3 py-1.5 rounded-full shadow-sm border border-emerald-100">
+                            @if ($product->stock > 50)
+                                STOK MELIMPAH
+                            @elseif($product->stock <= 5)
+                                STOK TERBATAS
+                            @else
+                                BARU PANEN
+                            @endif
+                        </span>
                     </div>
-                </div>
 
-                <div class="px-2 space-y-2">
-                    <div class="flex justify-between items-center">
-                        <span class="text-[11px] font-bold uppercase tracking-[0.15em] text-orange-500">Sayuran</span>
-                        <div class="flex items-center text-amber-400 text-xs">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 fill-current" viewBox="0 0 20 20">
-                                <path
-                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                            </svg>
-                            <span class="ml-1 text-slate-400 font-bold">4.9</span>
+                    <div class="aspect-[4/5] bg-slate-50 rounded-[24px] overflow-hidden mb-6 relative">
+                        <img src="{{ Str::startsWith($product->image, 'http') ? $product->image : asset('storage/' . $product->image) }}"
+                            class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                            alt="{{ $product->name }}">
+
+                        <div
+                            class="absolute inset-0 bg-slate-900/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <a href="{{ route('products.index') }}" {{-- Nanti ganti ke detail produk jika sudah ada --}}
+                                class="bg-white text-slate-900 p-4 rounded-2xl shadow-xl transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                </svg>
+                            </a>
                         </div>
                     </div>
-                    <h3 class="text-xl font-extrabold text-slate-900 group-hover:text-emerald-600 transition-colors">
-                        Kentang Dieng Super</h3>
-                    <div class="flex items-baseline gap-2">
-                        <span class="text-xl font-black text-slate-900">Rp 18.000</span>
-                        <span class="text-sm text-slate-400 font-medium">/ kg</span>
+
+                    <div class="px-2 space-y-2">
+                        <div class="flex justify-between items-center">
+                            <span class="text-[11px] font-bold uppercase tracking-[0.15em] text-orange-500">
+                                {{ $product->category }}
+                            </span>
+                            <div class="flex items-center text-amber-400 text-xs">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 fill-current"
+                                    viewBox="0 0 20 20">
+                                    <path
+                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                </svg>
+                                <span class="ml-1 text-slate-400 font-bold">4.9</span>
+                            </div>
+                        </div>
+                        <h3
+                            class="text-xl font-extrabold text-slate-900 group-hover:text-emerald-600 transition-colors truncate">
+                            {{ $product->name }}
+                        </h3>
+                        <div class="flex items-baseline gap-2">
+                            <span class="text-xl font-black text-slate-900">
+                                {{ $product->formatted_price }}
+                            </span>
+                            <span class="text-sm text-slate-400 font-medium">/ {{ $product->unit }}</span>
+                        </div>
+
+                        <a href="https://wa.me/6281234567890?text=Halo NusaFresh, saya tertarik memesan {{ $product->name }}"
+                            target="_blank"
+                            class="w-full mt-6 bg-slate-50 text-slate-900 py-4 rounded-2xl text-sm font-bold group-hover:bg-emerald-600 group-hover:text-white transition-all duration-300 flex items-center justify-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                            </svg>
+                            Pesan Sekarang
+                        </a>
                     </div>
-
-                    <button
-                        class="w-full mt-6 bg-slate-50 text-slate-900 py-4 rounded-2xl text-sm font-bold group-hover:bg-emerald-600 group-hover:text-white transition-all duration-300 flex items-center justify-center gap-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                        </svg>
-                        Tambah Pesanan
-                    </button>
                 </div>
-            </div>
-
+            @endforeach
         </div>
     </section>
 

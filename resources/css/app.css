@@ -2,48 +2,36 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components {
-    /* Bounce Slow: Memberikan efek mengambang yang organik */
+/* Custom Classes */
+.nav-custom {
+    @apply bg-white/80 backdrop-blur-md;
+}
+
+.glass-card {
+    @apply bg-white/80 backdrop-blur-xl border border-white/40 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)];
+}
+
+/* Animations */
+@layer utilities {
     .animate-bounce-slow {
         animation: bounce-slow 4s ease-in-out infinite;
-        will-change: transform;
     }
 
-    /* Marquee: Animasi horizontal yang seamless */
     .animate-marquee {
         animation: marquee 30s linear infinite;
         display: flex;
         width: max-content;
-        backface-visibility: hidden; /* Mencegah font bergetar saat animasi */
-    }
-
-    .animate-marquee:hover {
-        animation-play-state: paused;
-    }
-
-    /* Utilitas Tambahan untuk Kesan Premium */
-    .glass-card {
-        @apply bg-white/80 backdrop-blur-xl border border-white/40 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)];
     }
 }
 
 @keyframes bounce-slow {
-    0%,
-    100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-15px);
-    }
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
 }
 
 @keyframes marquee {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-50%);
-    }
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
 }
 
 details > summary::-webkit-details-marker {
