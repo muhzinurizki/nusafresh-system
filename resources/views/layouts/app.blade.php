@@ -40,7 +40,7 @@
                     <div class="hidden md:flex items-center space-x-10 text-[13px] font-bold uppercase tracking-widest text-slate-500">
                         <a href="{{ route('products.index') }}" class="hover:text-emerald-600 transition-colors">Katalog</a>
                         <a href="{{ route('services.index') }}" class="hover:text-emerald-600 transition-colors">Layanan</a>
-                        <a href="/#mitra" class="hover:text-emerald-600 transition-colors">Kemitraan</a>
+                        <a href="{{ route('partnership.index') }}" class="hover:text-emerald-600 transition-colors">Kemitraan</a>
                     </div>
 
                     <div class="flex items-center gap-4">

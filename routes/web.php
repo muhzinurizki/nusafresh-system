@@ -25,3 +25,8 @@ Route::get('/products/{product:slug}', [ProductController::class, 'show'])->name
 Route::get('/services', function () {
     return view('services.index'); 
 })->name('services.index');
+
+// Halaman Kemitraan
+Route::get('/kemitraan', function () {
+    return view('partnership.index');
+})->name('partnership.index');

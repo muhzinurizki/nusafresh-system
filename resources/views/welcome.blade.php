@@ -38,7 +38,7 @@
                         <span
                             class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-500 group-hover:w-full transition-all duration-300"></span>
                     </a>
-                    <a href="#mitra" class="text-slate-500 hover:text-emerald-600 transition-colors relative group">
+                    <a href="{{ route('partnership.index') }}" class="text-slate-500 hover:text-emerald-600 transition-colors relative group">
                         Kemitraan
                         <span
                             class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-500 group-hover:w-full transition-all duration-300"></span>
