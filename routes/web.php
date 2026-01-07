@@ -20,3 +20,8 @@ Route::get('/products', [ProductController::class, 'index'])->name('products.ind
 
 // Halaman Detail Produk (Opsional - Bagus untuk SEO dan User Experience)
 Route::get('/products/{product:slug}', [ProductController::class, 'show'])->name('products.show');
+
+// Halaman Layanan
+Route::get('/services', function () {
+    return view('services.index'); 
+})->name('services.index');
